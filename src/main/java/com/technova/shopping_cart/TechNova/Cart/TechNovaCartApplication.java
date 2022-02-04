@@ -17,4 +17,6 @@ public class TechNovaCartApplication {
 	public RestTemplate getRestTemplate(){
 		return new RestTemplate();
 	}
+
+
 }

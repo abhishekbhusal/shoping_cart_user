@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class OrderResponse {
-    private Integer statusCode;
+
+    private Object data;
     private String message;
     private Object errors;
-    private Object data;
+    private Integer statusCode;
 }

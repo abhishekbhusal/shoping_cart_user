@@ -1,5 +1,6 @@
 package com.technova.shopping_cart.TechNova.Cart.controller;
 
+import com.technova.shopping_cart.TechNova.Cart.dto.LoginRequest;
 import com.technova.shopping_cart.TechNova.Cart.dto.UserRequest;
 import com.technova.shopping_cart.TechNova.Cart.exception.UserException;
 import com.technova.shopping_cart.TechNova.Cart.model.User;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -123,6 +125,11 @@ public class UserController {
             log.info("user with id{} doesn't exist",existingUser.get().getId());
             return ApiResponse.generateResponse(HttpStatus.NOT_FOUND.value(), "User with id" + id + "not found in our database", null, "User not found");
 
+        }
+        @PostMapping("/users/login")
+        public ResponseEntity<Object> userLogin(@RequestBody LoginRequest loginRequest){
+            Map<String,Object> res= (Map<String, Object>) userService.userLogin(loginRequest);
+            return ApiResponse.generateResponse(HttpStatus.OK.value(), "Login successfull",res,null);
         }
 
     }
